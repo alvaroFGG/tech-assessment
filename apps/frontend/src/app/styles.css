@@ -7,3 +7,9 @@
   font-family: 'Poppins', sans-serif;
   color: #262d34;
 }
+
+table th,
+table td {
+  text-align: left;
+  padding: 0.5rem; /* opcional, para que respire */
+}
