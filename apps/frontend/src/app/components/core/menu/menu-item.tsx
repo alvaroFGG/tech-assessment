@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 12px;
   padding-left: 8px;
+  cursor: pointer;
 
   .icon {
     width: 20px;
