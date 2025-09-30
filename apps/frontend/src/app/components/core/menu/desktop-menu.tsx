@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MenuItem } from './menu-item';
 
 export const DesktopMenu = () => {
   return (
@@ -17,13 +18,7 @@ export const DesktopMenu = () => {
         </div>
       </div>
 
-      <div className="students">
-        <div className="hat_icon">
-          <img src="/icons/hat-icon.svg" alt="hat icon" />
-        </div>
-
-        <span>Alumnos</span>
-      </div>
+      <MenuItem icon="/icons/hat-icon.svg" label="Alumnos" />
     </StyledDesktopMenu>
   );
 };
