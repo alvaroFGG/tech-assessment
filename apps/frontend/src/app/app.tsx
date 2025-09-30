@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import { DesktopMenu } from './components/core';
 
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
+const StyledApp = styled.main`
+  display: flex;
+  background: #fafbff;
+  width: 100%;
 `;
 
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="frontend" />
+      <DesktopMenu />
     </StyledApp>
   );
 }
