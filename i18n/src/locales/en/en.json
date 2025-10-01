@@ -4,6 +4,8 @@
   "name_and_lastname": "Name and lastname",
   "user": "User",
   "email": "Email",
-  "mobile": "Mobile",
-  "name": "Name and lastname"
+  "phone": "Phone",
+  "name": "Name and lastname",
+  "profile": "Profile",
+  "edit_student": "Edit Student"
 }

@@ -4,6 +4,8 @@
   "name_and_lastname": "Nombre y apellidos",
   "user": "Usuario",
   "email": "Correo electrónico",
-  "mobile": "Móvil",
-  "name": "Nombre y apellidos"
+  "phone": "Móvil",
+  "name": "Nombre y apellidos",
+  "profile": "Perfil",
+  "edit_student": "Editar alumno"
 }

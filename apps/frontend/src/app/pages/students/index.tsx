@@ -4,14 +4,37 @@ import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
 import { Badge } from '../../components/badge';
 import i18n from '@tech-assessment/i18n';
+import { useState } from 'react';
+import { ProfileModal } from '../../components/modals/profile-modal';
 
 const data = [
-  { name: 'Juan Perez', age: 20, grade: 'A', status: 'active' },
-  { name: 'Maria Gomez', age: 22, grade: 'B', status: 'active' },
-  { name: 'Carlos Sanchez', age: 21, grade: 'C', status: 'inactive' },
+  {
+    name: 'Juan Perez',
+    user: 'juanp',
+    email: 'juanp@example.com',
+    phone: '555-1234',
+    status: 'active',
+  },
+  {
+    name: 'Maria Gomez',
+    user: 'mariag',
+    email: 'mariag@example.com',
+    phone: '555-5678',
+    status: 'active',
+  },
+  {
+    name: 'Carlos Sanchez',
+    user: 'carloss',
+    email: 'carloss@example.com',
+    phone: '555-8765',
+    status: 'inactive',
+  },
 ];
 
 const StudentsPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
   return (
     <Wrapper>
       <PageHeader title={i18n.t('students')}>
@@ -20,6 +43,12 @@ const StudentsPage = () => {
           {i18n.t('add_student')}
         </CustomButton>
       </PageHeader>
+
+      <ProfileModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        student={selectedStudent}
+      />
 
       <DynamicTable
         data={
@@ -31,10 +60,21 @@ const StudentsPage = () => {
                 label={student.status === 'active' ? 'Activo' : 'Inactivo'}
               />
             ),
+            name: (
+              <span
+                className="name_link"
+                onClick={() => {
+                  setSelectedStudent(student as any);
+                  setIsModalOpen(true);
+                }}
+              >
+                {student.name}
+              </span>
+            ),
           })) as unknown as Record<string, string>[]
         }
-        fields={[' ', 'name', 'age', 'grade']}
-        widths={['1', '5', '2', '2']}
+        fields={[' ', 'name', 'user', 'email', 'phone']}
+        widths={['1', '3', '3', '3']}
       />
     </Wrapper>
   );
@@ -48,4 +88,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+
+  .name_link {
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `;
