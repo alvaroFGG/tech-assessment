@@ -84,7 +84,7 @@ export const DynamicTable = <T extends object>({
           <tr key={row.id}>
             {row.getVisibleCells().map((cell, index) => (
               <td key={cell.id} style={getWidthStyle(index)} className="cell">
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                {cell.getValue() as React.ReactNode}
               </td>
             ))}
           </tr>

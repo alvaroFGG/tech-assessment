@@ -3,6 +3,12 @@ import { PageHeader } from '../../components/core/page-header';
 import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
 
+const data = [
+  { name: 'Juan Perez', age: 20, grade: 'A', status: 'active' },
+  { name: 'Maria Gomez', age: 22, grade: 'B', status: 'active' },
+  { name: 'Carlos Sanchez', age: 21, grade: 'C', status: 'inactive' },
+];
+
 const StudentsPage = () => {
   return (
     <Wrapper>
@@ -14,13 +20,23 @@ const StudentsPage = () => {
       </PageHeader>
 
       <DynamicTable
-        data={[
-          { name: 'Juan Perez', age: 20, grade: 'A' },
-          { name: 'Maria Gomez', age: 22, grade: 'B' },
-          { name: 'Carlos Sanchez', age: 21, grade: 'C' },
-        ]}
-        fields={['name', 'age', 'grade']}
-        widths={['5', '2', '2']}
+        data={
+          data.map((student) => ({
+            ...student,
+            status: (
+              <span
+                style={{
+                  color: student.status === 'active' ? 'green' : 'red',
+                  fontWeight: '600',
+                }}
+              >
+                {student.status === 'active' ? 'Activo' : 'Inactivo'}
+              </span>
+            ),
+          })) as unknown as Record<string, string>[]
+        }
+        fields={['status', 'name', 'age', 'grade']}
+        widths={['1', '5', '2', '2']}
       />
     </Wrapper>
   );
