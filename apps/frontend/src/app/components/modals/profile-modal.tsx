@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import styled from 'styled-components';
 import i18n from '@tech-assessment/i18n';
 import { CustomButton } from '../core/custom-button';
+import { Switch } from '../switch';
 
 interface Props {
   isOpen: boolean;
@@ -31,25 +32,57 @@ export const ProfileModal = ({ isOpen, onClose, student }: Props) => {
           </div>
 
           <div className="profile_info">
-            <div className="info_container">
-              <span className="label">{i18n.t('name_and_lastname')}</span>
-              <span className="value">{student.name}</span>
+            <div className="container_with_icon">
+              <img src="/icons/user-icon.svg" alt="user icon" />
+
+              <div className="info_container">
+                <span className="label">{i18n.t('name_and_lastname')}</span>
+                <span className="value">{student.name}</span>
+              </div>
             </div>
 
-            <div className="info_container">
-              <span className="label">{i18n.t('username')}</span>
-              <span className="value">{student.user}</span>
+            <div className="container_with_icon">
+              <img src="/icons/user-icon.svg" alt="user icon" />
+
+              <div className="info_container">
+                <span className="label">{i18n.t('username')}</span>
+                <span className="value">{student.user}</span>
+              </div>
             </div>
 
-            <div className="info_container">
-              <span className="label">{i18n.t('email')}</span>
-              <span className="value">{student.email}</span>
+            <div className="container_with_icon">
+              <img src="/icons/msg-icon.svg" alt="email icon" />
+
+              <div className="info_container">
+                <span className="label">{i18n.t('email')}</span>
+                <span className="value">{student.email}</span>
+              </div>
             </div>
 
-            <div className="info_container">
-              <span className="label">{i18n.t('phone')}</span>
-              <span className="value">{student.phone}</span>
+            <div className="container_with_icon">
+              <img src="/icons/mobile-icon.svg" alt="phone icon" />
+
+              <div className="info_container">
+                <span className="label">{i18n.t('phone')}</span>
+                <span className="value">{student.phone}</span>
+              </div>
             </div>
+          </div>
+
+          <div className="modal_footer">
+            <div>
+              <Switch />
+
+              <span>{i18n.t('active_account')}</span>
+            </div>
+
+            <CustomButton
+              onClick={() => {}}
+              backgroundColor="transparent"
+              textColor="#262D34"
+            >
+              {i18n.t('close')}
+            </CustomButton>
           </div>
         </Content>
       </Dialog.Portal>
@@ -104,11 +137,17 @@ const Content = styled(Dialog.Content)`
     align-items: center;
   }
 
+  .container_with_icon {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
   .profile_info {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 350px;
+    max-width: 280px;
     gap: 10px;
 
     .info_container {
@@ -124,6 +163,20 @@ const Content = styled(Dialog.Content)`
       .value {
         font-size: 14px;
       }
+    }
+  }
+
+  .modal_footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
     }
   }
 `;

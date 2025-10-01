@@ -7,5 +7,7 @@
   "phone": "Móvil",
   "name": "Nombre y apellidos",
   "profile": "Perfil",
-  "edit_student": "Editar alumno"
+  "edit_student": "Editar estudiante",
+  "close": "Cerrar",
+  "active_account": "Cuenta activa"
 }

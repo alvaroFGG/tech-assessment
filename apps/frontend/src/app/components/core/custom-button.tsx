@@ -31,9 +31,12 @@ const Button = styled.button<{ backgroundColor?: string; textColor?: string }>`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 8px 10px;
   background: ${(props) => props.backgroundColor || '#2563EB'};
   color: ${(props) => props.textColor || '#FFFFFF'};
+  border: ${(props) =>
+    props.backgroundColor === 'transparent' ? '1px solid #262D34' : 'none'};
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 `;

@@ -7,5 +7,7 @@
   "phone": "Phone",
   "name": "Name and lastname",
   "profile": "Profile",
-  "edit_student": "Edit Student"
+  "edit_student": "Edit Student",
+  "close": "Close",
+  "active_account": "Active Account"
 }
