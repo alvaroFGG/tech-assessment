@@ -10,10 +10,13 @@ export const Badge = ({ label, color }: Props) => {
 };
 
 const Wrapper = styled.div<{ color: string }>`
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
+  border-radius: 5px;
   background-color: ${({ color }) => color || 'gray'};
-  color: white;
-  font-weight: 600;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  width: fit-content;
+  padding: 3px 7px;
 `;

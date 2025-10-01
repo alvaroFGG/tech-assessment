@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { PageHeader } from '../../components/core/page-header';
 import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
+import { Badge } from '../../components/badge';
 
 const data = [
   { name: 'Juan Perez', age: 20, grade: 'A', status: 'active' },
@@ -23,19 +24,15 @@ const StudentsPage = () => {
         data={
           data.map((student) => ({
             ...student,
-            status: (
-              <span
-                style={{
-                  color: student.status === 'active' ? 'green' : 'red',
-                  fontWeight: '600',
-                }}
-              >
-                {student.status === 'active' ? 'Activo' : 'Inactivo'}
-              </span>
+            ' ': (
+              <Badge
+                color={student.status === 'active' ? '#90E8BE' : '#CAD6DC'}
+                label={student.status === 'active' ? 'Activo' : 'Inactivo'}
+              />
             ),
           })) as unknown as Record<string, string>[]
         }
-        fields={['status', 'name', 'age', 'grade']}
+        fields={[' ', 'name', 'age', 'grade']}
         widths={['1', '5', '2', '2']}
       />
     </Wrapper>
