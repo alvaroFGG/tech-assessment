@@ -3,6 +3,7 @@ import { PageHeader } from '../../components/core/page-header';
 import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
 import { Badge } from '../../components/badge';
+import i18n from '@tech-assessment/i18n';
 
 const data = [
   { name: 'Juan Perez', age: 20, grade: 'A', status: 'active' },
@@ -13,10 +14,10 @@ const data = [
 const StudentsPage = () => {
   return (
     <Wrapper>
-      <PageHeader title="Alumnos">
+      <PageHeader title={i18n.t('students')}>
         <CustomButton onClick={() => {}} backgroundColor="#0ABB87">
           <img src="/icons/plus-icon.svg" alt="plus icon" />
-          Nuevo alumno
+          {i18n.t('add_student')}
         </CustomButton>
       </PageHeader>
 

@@ -1,11 +1,11 @@
 import {
   ColumnDef,
-  flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import styled from 'styled-components';
+import i18n from '@tech-assessment/i18n';
 
 type Props<T> = {
   data: T[] | null;
@@ -67,12 +67,7 @@ export const DynamicTable = <T extends object>({
                 style={getWidthStyle(index)}
                 className="cell id_cell"
               >
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
+                {i18n.t(header.id)}
               </th>
             ))}
           </tr>
