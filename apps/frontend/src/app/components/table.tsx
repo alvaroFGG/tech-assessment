@@ -5,6 +5,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import styled from 'styled-components';
 
 type Props<T> = {
   data: T[] | null;
@@ -56,12 +57,16 @@ export const DynamicTable = <T extends object>({
   };
 
   return (
-    <table>
+    <Table>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header, index) => (
-              <th key={header.id} style={getWidthStyle(index)}>
+              <th
+                key={header.id}
+                style={getWidthStyle(index)}
+                className="cell id_cell"
+              >
                 {header.isPlaceholder
                   ? null
                   : flexRender(
@@ -78,13 +83,40 @@ export const DynamicTable = <T extends object>({
         {table.getRowModel().rows.map((row) => (
           <tr key={row.id}>
             {row.getVisibleCells().map((cell, index) => (
-              <td key={cell.id} style={getWidthStyle(index)}>
+              <td key={cell.id} style={getWidthStyle(index)} className="cell">
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
+
+const Table = styled.table`
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+
+  thead {
+    background: #eef0f5;
+    border-bottom: 1px solid #d1d5db;
+  }
+
+  tbody {
+    background: #ffffff;
+  }
+
+  .id_cell {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .cell {
+    padding: 16px !important;
+    font-size: 14px;
+  }
+`;
