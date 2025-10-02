@@ -8,21 +8,24 @@ import { useEffect, useState } from 'react';
 import { ProfileModal } from '../../components/modals/profile-modal';
 import { Student } from '../../models';
 import { findStudents, GenericApiResponse } from '../../services';
+import { Pagination } from '../../components/pagination/pagination';
 
 const StudentsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [data, setData] = useState<GenericApiResponse<Student> | null>(null);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await findStudents(1, 10);
+      const response = await findStudents(page, pageSize);
       setData(response);
     };
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page, pageSize]);
 
   return (
     <Wrapper>
@@ -68,6 +71,17 @@ const StudentsPage = () => {
           }
           fields={[' ', 'name', 'user', 'email', 'phone']}
           widths={['1', '3', '3', '3']}
+        />
+      )}
+
+      {data && (
+        <Pagination
+          count={data.count}
+          page={data.page}
+          onPageChange={(newPage) => setPage(newPage)}
+          pageSize={data?.pageSize || 10}
+          setPageSize={setPageSize}
+          totalPages={data.totalPages}
         />
       )}
     </Wrapper>

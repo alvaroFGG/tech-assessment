@@ -15,5 +15,8 @@
   "cancel_edition": "Cancel edition",
   "save": "Save",
   "cancel": "Cancel",
-  "deactivate": "Deactivate"
+  "deactivate": "Deactivate",
+  "count_results": "{{count}} elements",
+  "deactivate_student_confirmation": "Are you sure you want to deactivate this account? The user will no longer have access to the platform.",
+  "page": "page"
 }
