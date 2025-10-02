@@ -13,5 +13,8 @@
   "close": "Cerrar",
   "active_account": "Cuenta activa",
   "cancel_edition": "Cancelar edición",
-  "save": "Guardar"
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "deactivate": "Desactivar",
+  "deactivate_student_confirmation": "¿Seguro que quieres desactivar esta cuenta? El usuario dejará de tener acceso a la plataforma."
 }

@@ -1,9 +1,9 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { ProfileInfoContent } from './profile-info-content';
 import { Student } from '../../models';
 import { EditStudentContent } from './edit-student-content';
+import { Overlay } from './overlay';
 
 interface Props {
   isOpen: boolean;
@@ -42,9 +42,3 @@ export const ProfileModal = ({ isOpen, onClose, student }: Props) => {
     </Dialog.Root>
   );
 };
-
-const Overlay = styled(Dialog.Overlay)`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-`;

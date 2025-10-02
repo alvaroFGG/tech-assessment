@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { CustomButton } from '../core/custom-button';
 import { Switch } from '../switch';
 import { Student } from '../../models';
+import { useState } from 'react';
+import { DeactivateStudentModal } from './deactivate-student-modal';
 
 interface Props {
   student: Student;
@@ -16,85 +18,94 @@ export const ProfileInfoContent = ({
   setIsEditionMode,
   setIsModalOpen,
 }: Props) => {
+  const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
+
   return (
-    <Content>
-      <div className="modal_header">
-        <div className="profile">
-          <span>{i18n.t('profile')}</span>
+    <>
+      <DeactivateStudentModal
+        isOpen={isDeactivateModalOpen}
+        onClose={() => setIsDeactivateModalOpen(false)}
+      />
+
+      <Content>
+        <div className="modal_header">
+          <div className="profile">
+            <span>{i18n.t('profile')}</span>
+          </div>
+
+          <CustomButton
+            onClick={() => {
+              setIsEditionMode(true);
+            }}
+            backgroundColor="#0ABB87"
+          >
+            {i18n.t('edit_student')}
+          </CustomButton>
         </div>
 
-        <CustomButton
-          onClick={() => {
-            setIsEditionMode(true);
-          }}
-          backgroundColor="#0ABB87"
-        >
-          {i18n.t('edit_student')}
-        </CustomButton>
-      </div>
+        <div className="profile_image">
+          <img src="/icons/profile-image.svg" alt="profile icon" />
+        </div>
 
-      <div className="profile_image">
-        <img src="/icons/profile-image.svg" alt="profile icon" />
-      </div>
+        <div className="profile_info">
+          <div className="container_with_icon">
+            <img src="/icons/user-icon.svg" alt="user icon" />
 
-      <div className="profile_info">
-        <div className="container_with_icon">
-          <img src="/icons/user-icon.svg" alt="user icon" />
+            <div className="info_container">
+              <span className="label">{i18n.t('name_and_lastname')}</span>
+              <span className="value">{student.name}</span>
+            </div>
+          </div>
 
-          <div className="info_container">
-            <span className="label">{i18n.t('name_and_lastname')}</span>
-            <span className="value">{student.name}</span>
+          <div className="container_with_icon">
+            <img src="/icons/user-icon.svg" alt="user icon" />
+
+            <div className="info_container">
+              <span className="label">{i18n.t('username')}</span>
+              {/* <span className="value">{student.user}</span> */}
+            </div>
+          </div>
+
+          <div className="container_with_icon">
+            <img src="/icons/msg-icon.svg" alt="email icon" />
+
+            <div className="info_container">
+              <span className="label">{i18n.t('email')}</span>
+              <span className="value">{student.email}</span>
+            </div>
+          </div>
+
+          <div className="container_with_icon">
+            <img src="/icons/mobile-icon.svg" alt="phone icon" />
+
+            <div className="info_container">
+              <span className="label">{i18n.t('phone')}</span>
+              <span className="value">{student.phone}</span>
+            </div>
           </div>
         </div>
 
-        <div className="container_with_icon">
-          <img src="/icons/user-icon.svg" alt="user icon" />
+        <div className="flex_grow" />
 
-          <div className="info_container">
-            <span className="label">{i18n.t('username')}</span>
-            {/* <span className="value">{student.user}</span> */}
+        <div className="modal_footer">
+          <div>
+            <Switch onChange={(checked) => setIsDeactivateModalOpen(true)} />
+
+            <span>{i18n.t('active_account')}</span>
           </div>
+
+          <CustomButton
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+            backgroundColor="transparent"
+            textColor="#262D34"
+          >
+            {i18n.t('close')}
+          </CustomButton>
         </div>
-
-        <div className="container_with_icon">
-          <img src="/icons/msg-icon.svg" alt="email icon" />
-
-          <div className="info_container">
-            <span className="label">{i18n.t('email')}</span>
-            <span className="value">{student.email}</span>
-          </div>
-        </div>
-
-        <div className="container_with_icon">
-          <img src="/icons/mobile-icon.svg" alt="phone icon" />
-
-          <div className="info_container">
-            <span className="label">{i18n.t('phone')}</span>
-            <span className="value">{student.phone}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex_grow" />
-
-      <div className="modal_footer">
-        <div>
-          <Switch />
-
-          <span>{i18n.t('active_account')}</span>
-        </div>
-
-        <CustomButton
-          onClick={() => {
-            setIsModalOpen(false);
-          }}
-          backgroundColor="transparent"
-          textColor="#262D34"
-        >
-          {i18n.t('close')}
-        </CustomButton>
-      </div>
-    </Content>
+      </Content>
+    </>
   );
 };
 

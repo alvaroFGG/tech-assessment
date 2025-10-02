@@ -1,9 +1,13 @@
 import * as RadixSwitch from '@radix-ui/react-switch';
 import styled from 'styled-components';
 
-export const Switch = () => {
+interface Props {
+  onChange: (checked: boolean) => void;
+}
+
+export const Switch = ({ onChange }: Props) => {
   return (
-    <SwitchRoot defaultChecked id="s1">
+    <SwitchRoot defaultChecked id="s1" onCheckedChange={onChange}>
       <SwitchThumb />
     </SwitchRoot>
   );

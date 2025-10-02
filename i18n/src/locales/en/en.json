@@ -13,5 +13,7 @@
   "close": "Close",
   "active_account": "Active Account",
   "cancel_edition": "Cancel edition",
-  "save": "Save"
+  "save": "Save",
+  "cancel": "Cancel",
+  "deactivate": "Deactivate"
 }
