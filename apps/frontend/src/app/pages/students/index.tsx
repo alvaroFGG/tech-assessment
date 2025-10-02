@@ -4,37 +4,25 @@ import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
 import { Badge } from '../../components/badge';
 import i18n from '@tech-assessment/i18n';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProfileModal } from '../../components/modals/profile-modal';
 import { Student } from '../../models';
-
-const data = [
-  {
-    name: 'Juan',
-    lastName: 'Lopez',
-    email: 'juanp@example.com',
-    phone: '555-1234',
-    isActive: true,
-  },
-  {
-    name: 'Maria',
-    lastName: 'Gomez',
-    email: 'mariag@example.com',
-    phone: '555-5678',
-    isActive: true,
-  },
-  {
-    name: 'Carlos',
-    lastName: 'Sanchez',
-    email: 'carloss@example.com',
-    phone: '555-8765',
-    isActive: false,
-  },
-] as Student[];
+import { findStudents, GenericApiResponse } from '../../services';
 
 const StudentsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [data, setData] = useState<GenericApiResponse<Student> | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await findStudents(1, 10);
+      setData(response);
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Wrapper>
@@ -53,33 +41,35 @@ const StudentsPage = () => {
         />
       )}
 
-      <DynamicTable
-        data={
-          data.map((student) => ({
-            ...student,
-            ' ': (
-              <Badge
-                color={student.isActive === true ? '#90E8BE' : '#CAD6DC'}
-                label={student.isActive === true ? 'Activo' : 'Inactivo'}
-              />
-            ),
-            name: (
-              <span
-                className="name_link"
-                onClick={() => {
-                  setSelectedStudent(student);
-                  setIsModalOpen(true);
-                }}
-              >
-                {student.name} {student.lastName}
-              </span>
-            ),
-            user: <span>{student.email.split('@')[0]}</span>,
-          })) as unknown as Record<string, string>[]
-        }
-        fields={[' ', 'name', 'user', 'email', 'phone']}
-        widths={['1', '3', '3', '3']}
-      />
+      {data && data.data.length > 0 && (
+        <DynamicTable
+          data={
+            data.data.map((student: Student) => ({
+              ...student,
+              ' ': (
+                <Badge
+                  color={student.isActive === true ? '#90E8BE' : '#CAD6DC'}
+                  label={student.isActive === true ? 'Activo' : 'Inactivo'}
+                />
+              ),
+              name: (
+                <span
+                  className="name_link"
+                  onClick={() => {
+                    setSelectedStudent(student);
+                    setIsModalOpen(true);
+                  }}
+                >
+                  {student.name} {student.lastName}
+                </span>
+              ),
+              user: <span>{student.email.split('@')[0]}</span>,
+            })) as unknown as Record<string, string>[]
+          }
+          fields={[' ', 'name', 'user', 'email', 'phone']}
+          widths={['1', '3', '3', '3']}
+        />
+      )}
     </Wrapper>
   );
 };
