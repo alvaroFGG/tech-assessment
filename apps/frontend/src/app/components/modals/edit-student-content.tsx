@@ -5,7 +5,7 @@ import { Student } from '../../models';
 import { CustomButton } from '../core/custom-button';
 import { CustomInput } from '../core/custom-input';
 import { useForm } from 'react-hook-form';
-import { createStudent } from '../../services';
+import { createStudent, updateStudent } from '../../services';
 import { emailRegex, phoneRegex } from '../../types';
 
 interface Props {
@@ -83,7 +83,8 @@ export const EditStudentContent = ({
     }
 
     if (student) {
-      // Update existing student
+      await updateStudent(student.id, data);
+      setIsModalOpen(false);
 
       return;
     }

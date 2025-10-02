@@ -6,6 +6,7 @@ import { Switch } from '../switch';
 import { Student } from '../../models';
 import { useState } from 'react';
 import { DeactivateStudentModal } from './deactivate-student-modal';
+import { updateStudent } from '../../services';
 
 interface Props {
   student: Student;
@@ -19,12 +20,20 @@ export const ProfileInfoContent = ({
   setIsModalOpen,
 }: Props) => {
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
+  const [isActive, setIsActive] = useState(student.isActive || false);
+
+  const deactivateStudent = async () => {
+    setIsActive(false);
+    await updateStudent(student.id, { ...student, isActive: false });
+    setIsDeactivateModalOpen(false);
+  };
 
   return (
     <>
       <DeactivateStudentModal
         isOpen={isDeactivateModalOpen}
         onClose={() => setIsDeactivateModalOpen(false)}
+        deactivateStudent={deactivateStudent}
       />
 
       <Content>
@@ -92,8 +101,17 @@ export const ProfileInfoContent = ({
         <div className="modal_footer">
           <div>
             <Switch
-              onChange={(checked) => setIsDeactivateModalOpen(true)}
-              defaultChecked={student.isActive}
+              onChange={async (checked) => {
+                if (!checked) {
+                  setIsDeactivateModalOpen(true);
+                }
+
+                await updateStudent(student.id, {
+                  ...student,
+                  isActive: checked,
+                });
+              }}
+              defaultChecked={isActive}
             />
 
             {student.isActive && <span>{i18n.t('active_account')}</span>}

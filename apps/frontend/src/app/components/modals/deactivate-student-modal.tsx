@@ -7,9 +7,14 @@ import { CustomButton } from '../core/custom-button';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  deactivateStudent: () => void;
 }
 
-export const DeactivateStudentModal = ({ isOpen, onClose }: Props) => {
+export const DeactivateStudentModal = ({
+  isOpen,
+  onClose,
+  deactivateStudent,
+}: Props) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
@@ -33,7 +38,7 @@ export const DeactivateStudentModal = ({ isOpen, onClose }: Props) => {
               {i18n.t('cancel')}
             </CustomButton>
 
-            <CustomButton onClick={() => {}} backgroundColor="#E36057">
+            <CustomButton onClick={deactivateStudent} backgroundColor="#E36057">
               {i18n.t('deactivate')}
             </CustomButton>
           </div>

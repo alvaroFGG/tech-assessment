@@ -22,14 +22,14 @@ export const ProfileModal = ({ isOpen, onClose, student }: Props) => {
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
         <Overlay />
-        {isEditionMode ||
-          (!student && (
-            <EditStudentContent
-              setIsEditionMode={setIsEditionMode}
-              student={student}
-              setIsModalOpen={onClose}
-            />
-          ))}
+
+        {(isEditionMode || !student) && (
+          <EditStudentContent
+            setIsEditionMode={setIsEditionMode}
+            student={student}
+            setIsModalOpen={onClose}
+          />
+        )}
 
         {!isEditionMode && student && (
           <ProfileInfoContent

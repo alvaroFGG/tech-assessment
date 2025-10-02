@@ -48,4 +48,19 @@ export class StudentsService {
 
     return newStudent;
   }
+
+  update(id: string, dto: Partial<CreateStudentDto>): Student | null {
+    const data = this.readData();
+    const index = data.findIndex((student) => student.id === id);
+
+    if (index === -1) {
+      return null;
+    }
+
+    const updatedStudent = { ...data[index], ...dto };
+    data[index] = updatedStudent;
+    this.writeData(data);
+
+    return updatedStudent;
+  }
 }

@@ -25,3 +25,18 @@ export const createStudent = async (
 
   return response.json();
 };
+
+export const updateStudent = async (
+  id: string,
+  student: Omit<Student, 'id'>
+): Promise<Student> => {
+  const response = await fetch(`${API_URL}/students/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(student),
+  });
+
+  return response.json();
+};
