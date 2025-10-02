@@ -18,5 +18,15 @@
   "deactivate": "Deactivate",
   "count_results": "{{count}} elements",
   "deactivate_student_confirmation": "Are you sure you want to deactivate this account? The user will no longer have access to the platform.",
-  "page": "page"
+  "page": "page",
+  "new_student": "New Student",
+  "inactive_account": "Inactive Account",
+  "form_errors": {
+    "name_required": "Name is required",
+    "lastName_required": "Last name is required",
+    "email_required": "Email is required",
+    "phone_required": "Phone is required",
+    "email_invalid": "Email is not valid",
+    "phone_invalid": "Phone is not valid"
+  }
 }

@@ -91,9 +91,13 @@ export const ProfileInfoContent = ({
 
         <div className="modal_footer">
           <div>
-            <Switch onChange={(checked) => setIsDeactivateModalOpen(true)} />
+            <Switch
+              onChange={(checked) => setIsDeactivateModalOpen(true)}
+              defaultChecked={student.isActive}
+            />
 
-            <span>{i18n.t('active_account')}</span>
+            {student.isActive && <span>{i18n.t('active_account')}</span>}
+            {!student.isActive && <span>{i18n.t('inactive_account')}</span>}
           </div>
 
           <CustomButton

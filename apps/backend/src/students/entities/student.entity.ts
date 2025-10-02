@@ -4,5 +4,5 @@ export class Student {
   lastName: string;
   email: string;
   phone: string;
-  isActive: boolean;
+  isActive?: boolean;
 }

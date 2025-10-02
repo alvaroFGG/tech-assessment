@@ -1,5 +1,6 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { StudentsService } from './students.service';
+import { CreateStudentDto } from './dto/create-student.dto';
 
 @Controller('students')
 export class StudentsController {
@@ -11,5 +12,10 @@ export class StudentsController {
       page ? Number(page) : 1,
       pageSize ? Number(pageSize) : 10
     );
+  }
+
+  @Post()
+  create(@Body() dto: CreateStudentDto) {
+    return this.appService.create(dto);
   }
 }

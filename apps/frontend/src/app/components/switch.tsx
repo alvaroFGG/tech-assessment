@@ -3,11 +3,16 @@ import styled from 'styled-components';
 
 interface Props {
   onChange: (checked: boolean) => void;
+  defaultChecked?: boolean;
 }
 
-export const Switch = ({ onChange }: Props) => {
+export const Switch = ({ onChange, defaultChecked }: Props) => {
   return (
-    <SwitchRoot defaultChecked id="s1" onCheckedChange={onChange}>
+    <SwitchRoot
+      defaultChecked={defaultChecked}
+      id="s1"
+      onCheckedChange={onChange}
+    >
       <SwitchThumb />
     </SwitchRoot>
   );

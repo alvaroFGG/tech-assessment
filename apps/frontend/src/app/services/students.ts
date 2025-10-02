@@ -11,3 +11,17 @@ export const findStudents = async (
 
   return response.json();
 };
+
+export const createStudent = async (
+  student: Omit<Student, 'id'>
+): Promise<Student> => {
+  const response = await fetch(`${API_URL}/students`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(student),
+  });
+
+  return response.json();
+};

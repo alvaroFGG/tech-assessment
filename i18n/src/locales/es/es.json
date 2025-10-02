@@ -18,5 +18,15 @@
   "deactivate": "Desactivar",
   "deactivate_student_confirmation": "¿Seguro que quieres desactivar esta cuenta? El usuario dejará de tener acceso a la plataforma.",
   "count_results": "{{count}} elementos",
-  "page": "página"
+  "page": "página",
+  "new_student": "Nuevo alumno",
+  "inactive_account": "Cuenta inactiva",
+  "form_errors": {
+    "name_required": "El nombre es obligatorio",
+    "lastName_required": "Los apellidos son obligatorios",
+    "email_required": "El correo electrónico es obligatorio",
+    "phone_required": "El teléfono es obligatorio",
+    "email_invalid": "El correo electrónico no es válido",
+    "phone_invalid": "El teléfono no es válido"
+  }
 }

@@ -8,7 +8,7 @@ import { Overlay } from './overlay';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  student: Student;
+  student?: Student;
 }
 
 export const ProfileModal = ({ isOpen, onClose, student }: Props) => {
@@ -18,23 +18,23 @@ export const ProfileModal = ({ isOpen, onClose, student }: Props) => {
     setIsEditionMode(false);
   }, [isOpen]);
 
-  if (!student) return null;
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
         <Overlay />
-        {!isEditionMode && (
+        {isEditionMode ||
+          (!student && (
+            <EditStudentContent
+              setIsEditionMode={setIsEditionMode}
+              student={student}
+              setIsModalOpen={onClose}
+            />
+          ))}
+
+        {!isEditionMode && student && (
           <ProfileInfoContent
             student={student}
             setIsEditionMode={setIsEditionMode}
-            setIsModalOpen={onClose}
-          />
-        )}
-
-        {isEditionMode && (
-          <EditStudentContent
-            setIsEditionMode={setIsEditionMode}
-            student={student}
             setIsModalOpen={onClose}
           />
         )}

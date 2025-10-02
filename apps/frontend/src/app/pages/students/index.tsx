@@ -12,7 +12,9 @@ import { Pagination } from '../../components/pagination/pagination';
 
 const StudentsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [selectedStudent, setSelectedStudent] = useState<Student | undefined>(
+    undefined
+  );
   const [data, setData] = useState<GenericApiResponse<Student> | null>(null);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -30,19 +32,23 @@ const StudentsPage = () => {
   return (
     <Wrapper>
       <PageHeader title={i18n.t('students')}>
-        <CustomButton onClick={() => {}} backgroundColor="#0ABB87">
+        <CustomButton
+          onClick={() => {
+            setSelectedStudent(undefined);
+            setIsModalOpen(true);
+          }}
+          backgroundColor="#0ABB87"
+        >
           <img src="/icons/plus-icon.svg" alt="plus icon" />
           {i18n.t('add_student')}
         </CustomButton>
       </PageHeader>
 
-      {selectedStudent && (
-        <ProfileModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          student={selectedStudent}
-        />
-      )}
+      <ProfileModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        student={selectedStudent}
+      />
 
       {data && data.data.length > 0 && (
         <DynamicTable
