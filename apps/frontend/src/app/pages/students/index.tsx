@@ -10,19 +10,22 @@ import { Student } from '../../models';
 
 const data = [
   {
-    name: 'Juan Perez',
+    name: 'Juan',
+    lastName: 'Lopez',
     email: 'juanp@example.com',
     phone: '555-1234',
     isActive: true,
   },
   {
-    name: 'Maria Gomez',
+    name: 'Maria',
+    lastName: 'Gomez',
     email: 'mariag@example.com',
     phone: '555-5678',
     isActive: true,
   },
   {
-    name: 'Carlos Sanchez',
+    name: 'Carlos',
+    lastName: 'Sanchez',
     email: 'carloss@example.com',
     phone: '555-8765',
     isActive: false,
@@ -68,9 +71,10 @@ const StudentsPage = () => {
                   setIsModalOpen(true);
                 }}
               >
-                {student.name}
+                {student.name} {student.lastName}
               </span>
             ),
+            user: <span>{student.email.split('@')[0]}</span>,
           })) as unknown as Record<string, string>[]
         }
         fields={[' ', 'name', 'user', 'email', 'phone']}

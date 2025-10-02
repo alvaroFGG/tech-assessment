@@ -53,7 +53,9 @@ export const ProfileInfoContent = ({
 
             <div className="info_container">
               <span className="label">{i18n.t('name_and_lastname')}</span>
-              <span className="value">{student.name}</span>
+              <span className="value">
+                {student.name} {student.lastName}
+              </span>
             </div>
           </div>
 
@@ -62,7 +64,7 @@ export const ProfileInfoContent = ({
 
             <div className="info_container">
               <span className="label">{i18n.t('username')}</span>
-              {/* <span className="value">{student.user}</span> */}
+              <span className="value">{student.email.split('@')[0]}</span>
             </div>
           </div>
 
@@ -116,7 +118,7 @@ const Content = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   background: white;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   min-width: 500px;
   height: 100%;

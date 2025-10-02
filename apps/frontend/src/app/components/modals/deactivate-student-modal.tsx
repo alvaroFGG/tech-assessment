@@ -50,7 +50,7 @@ const Content = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   background: white;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   min-width: 500px;
   display: flex;
@@ -65,6 +65,7 @@ const Content = styled(Dialog.Content)`
   }
 
   .buttons {
+    margin-top: 12px;
     display: flex;
     gap: 8px;
     justify-content: center;
