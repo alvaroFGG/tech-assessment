@@ -13,3 +13,9 @@ table td {
   text-align: left;
   padding: 0.5rem; /* opcional, para que respire */
 }
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

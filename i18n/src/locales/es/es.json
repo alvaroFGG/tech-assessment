@@ -2,12 +2,16 @@
   "students": "Alumnos",
   "add_student": "Agregar alumno",
   "name_and_lastname": "Nombre y apellidos",
+  "lastname": "Apellidos",
   "user": "Usuario",
   "email": "Correo electrónico",
+  "mail": "Email",
   "phone": "Móvil",
-  "name": "Nombre y apellidos",
+  "name": "Nombre",
   "profile": "Perfil",
   "edit_student": "Editar estudiante",
   "close": "Cerrar",
-  "active_account": "Cuenta activa"
+  "active_account": "Cuenta activa",
+  "cancel_edition": "Cancelar edición",
+  "save": "Guardar"
 }

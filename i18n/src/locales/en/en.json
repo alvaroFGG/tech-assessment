@@ -2,12 +2,16 @@
   "students": "Students",
   "add_student": "Add Student",
   "name_and_lastname": "Name and lastname",
+  "lastname": "Lastname",
   "user": "User",
   "email": "Email",
+  "mail": "Email",
   "phone": "Phone",
   "name": "Name and lastname",
   "profile": "Profile",
   "edit_student": "Edit Student",
   "close": "Close",
-  "active_account": "Active Account"
+  "active_account": "Active Account",
+  "cancel_edition": "Cancel edition",
+  "save": "Save"
 }

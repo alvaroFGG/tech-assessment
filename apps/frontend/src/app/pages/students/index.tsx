@@ -6,34 +6,32 @@ import { Badge } from '../../components/badge';
 import i18n from '@tech-assessment/i18n';
 import { useState } from 'react';
 import { ProfileModal } from '../../components/modals/profile-modal';
+import { Student } from '../../models';
 
 const data = [
   {
     name: 'Juan Perez',
-    user: 'juanp',
     email: 'juanp@example.com',
     phone: '555-1234',
-    status: 'active',
+    isActive: true,
   },
   {
     name: 'Maria Gomez',
-    user: 'mariag',
     email: 'mariag@example.com',
     phone: '555-5678',
-    status: 'active',
+    isActive: true,
   },
   {
     name: 'Carlos Sanchez',
-    user: 'carloss',
     email: 'carloss@example.com',
     phone: '555-8765',
-    status: 'inactive',
+    isActive: false,
   },
-];
+] as Student[];
 
 const StudentsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   return (
     <Wrapper>
@@ -44,11 +42,13 @@ const StudentsPage = () => {
         </CustomButton>
       </PageHeader>
 
-      <ProfileModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        student={selectedStudent}
-      />
+      {selectedStudent && (
+        <ProfileModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          student={selectedStudent}
+        />
+      )}
 
       <DynamicTable
         data={
@@ -56,15 +56,15 @@ const StudentsPage = () => {
             ...student,
             ' ': (
               <Badge
-                color={student.status === 'active' ? '#90E8BE' : '#CAD6DC'}
-                label={student.status === 'active' ? 'Activo' : 'Inactivo'}
+                color={student.isActive === true ? '#90E8BE' : '#CAD6DC'}
+                label={student.isActive === true ? 'Activo' : 'Inactivo'}
               />
             ),
             name: (
               <span
                 className="name_link"
                 onClick={() => {
-                  setSelectedStudent(student as any);
+                  setSelectedStudent(student);
                   setIsModalOpen(true);
                 }}
               >
