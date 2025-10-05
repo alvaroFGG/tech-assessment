@@ -1,31 +1,31 @@
 # Prueba técnica
 
-## Contexto y requerimientos:
+Aquí se explicarán los procedimientos, librerías y decisiones tomadas durante esta prueba técnica.
 
-Estamos desarrollando software para academias. Para estas la gestión de usuarios es primordial.
-Las listas de usuarios son grandes y contienen muchísimos datos sobre el usuario,
-por lo que deben ser muy performantes. En la prueba técnica deberás implementar la interfaz proporcionada y
-usar los datos del JSON como base de datos, este JSON esta situado en la raíz del repositorio (DB.json)
+## Frontend
 
-Proporcionamos en este repositorio un boilerplate con un stack similar al utilizado en Ucademy, NestJS para el backend y React para
-el frontend.
+### Librerías utilizadas
 
-`git clone git@github.com:UcademyTech/tech-assessment.git`
+- **Styled components**
+- **i18n**: He querido utilizar esta librería de traducciones, primero para prevenir el uso de literales en los componentes y porque es un estándar en cuanto a desarrollo web. Existen dos archivos de traducciones, español (**es.json**) e inglés (**en.json**).
+- **Radix**: Es una libería de componentes paredida a Material UI. Pero no he instalado todo el paquete, sólo los componentes que he necesitado, estos han sido el Dialog (@radix-ui/react-dialog) y el Switch (@radix-ui/react-switch) que desactiva un alumno.
 
-`npm install`
+### Procedimientos
 
-`npm run start:backend`
+- **StudentsProvider**: Para un mejor control sobre los datos de los estudiantes, y la paginación he querido hacer un Provider, con su hook **useStudents** para poder utilizarlo en cualquer parte de la aplicación que esté contenida por el StudentsProvider. Este archivo llama a las funciones que interactúan con la api, dentro de la carpeta "**services**". De esta manera el estado de la base de datos y del front es el mismo continuamente.
+- **useIsMobile hook**: He realizado un hook para que sea sencillo ver cuándo la pantalla del dispositivo es más pequeña. Para las veces en las que sea más cómodo tener componentes diferentes para un tipo de pantalla u otro, por ejemplo el menú de la aplicación.
 
-`npm run start:fronted`
+## Backend
 
-## Enlaces:
+### Liberías utilizadas
 
-[Interfaz de usuario](https://www.figma.com/file/r1zwsMJU7IAsBJVuFLZHPK/Technical-Assessment?type=design&node-id=0%3A1&mode=design&t=tubwoMUyG8Lc4z9F-1)
+- **uuid**: A la hora de crear nuevos alumnos, la mejor opción me ha parecido "**uuidv4**" ya que es un estándar.
 
-- El uso de Styled components será valorado positivamente.
+### Procedimientos
 
-PD: El objetivo de la prueba es simplemente valorar las desiciones que toma el candidato a la hora de realizar la implementación. Hay muchas soluciones válidas a lo que aquí se plantea.
-
-## Entrega:
-
-Una vez finalizada la prueba se deberá entregar en un archivo comprimido (zip, tar.gz, etc) con el nombre del candidato.
+- **Estructura**: He hecho una estructura de módulos, el estándar de NestJS, en este caso he creado un módulo de students con las siguientes carpetas y archivos dentro:
+  - _DTO_: He creado dos dto, uno para la creación de estudiantes y otro para la actualización. Si la API recibe propiedades que no están dentro de ese dto, el backend los ignorará.
+  - _Entities_: Aquí está el modelo como tal de "Student" con sus propiedades tipadas.
+  - _Controller_: Este archivo recibe las llamadas con la ruta y el método HTTP correspondiente y devuelve la respuesta del Service
+  - _Service_: Este archivo realiza las operaciones correspondientes con el archivo utliazado para la base de datos (DB.json).
+    - **Función normalizeId**: Al ser el json un export de un mongo, he querido hacer una función para que sea más facil trabajar con cada registro, haciendo que el id sea un string en vez de un objeto.
