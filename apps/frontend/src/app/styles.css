@@ -8,6 +8,10 @@
   color: #262d34;
 }
 
+body {
+  background: #fafbff;
+}
+
 table th,
 table td {
   text-align: left;

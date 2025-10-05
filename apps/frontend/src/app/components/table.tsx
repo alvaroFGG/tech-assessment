@@ -57,37 +57,45 @@ export const DynamicTable = <T extends object>({
   };
 
   return (
-    <Table>
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header, index) => (
-              <th
-                key={header.id}
-                style={getWidthStyle(index)}
-                className="cell id_cell"
-              >
-                {i18n.t(header.id)}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
+    <TableWrapper>
+      <Table>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header, index) => (
+                <th
+                  key={header.id}
+                  style={getWidthStyle(index)}
+                  className="cell id_cell"
+                >
+                  {i18n.t(header.id)}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
 
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell, index) => (
-              <td key={cell.id} style={getWidthStyle(index)} className="cell">
-                {cell.getValue() as React.ReactNode}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell, index) => (
+                <td key={cell.id} style={getWidthStyle(index)} className="cell">
+                  {cell.getValue() as React.ReactNode}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </TableWrapper>
   );
 };
+
+const TableWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto; /* Permite scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Para suavizado en iOS */
+`;
 
 const Table = styled.table`
   width: 100%;
