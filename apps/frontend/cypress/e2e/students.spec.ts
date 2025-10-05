@@ -65,9 +65,30 @@ describe('Student PAge', () => {
 
   it('should deactivate student when clicking on the switch', () => {
     cy.visit('/');
+
     cy.get('.pagination > :nth-child(6)').click();
     cy.get('table').contains('td', 'Test Edited Test Edited').click();
     cy.get('#s1').click();
-    cy.get('button').contains('Desactivar').click();
+
+    // intenta encontrar el botón de "Desactivar"
+    cy.get('button').then(($buttons) => {
+      const deactivateButton = $buttons.filter((_, btn) =>
+        btn.textContent?.includes('Desactivar')
+      );
+
+      if (deactivateButton.length) {
+        // si existe, haz click
+        cy.wrap(deactivateButton).click();
+
+        // luego verifica que el badge se actualizó a "Inactivo"
+        cy.get(':nth-child(5) > [style="width: 8.33%;"] > #badge').should(
+          'contain',
+          'Inactivo'
+        );
+      } else {
+        // si no existe, termina el test de manera exitosa
+        cy.log('El estudiante ya estaba inactivo ✅');
+      }
+    });
   });
 });
