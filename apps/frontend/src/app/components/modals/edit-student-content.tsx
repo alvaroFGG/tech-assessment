@@ -5,8 +5,8 @@ import { Student } from '../../models';
 import { CustomButton } from '../core/custom-button';
 import { CustomInput } from '../core/custom-input';
 import { useForm } from 'react-hook-form';
-import { createStudent, updateStudent } from '../../services';
 import { emailRegex, phoneRegex } from '../../types';
+import { useStudents } from '../../providers/students-provider';
 
 interface Props {
   student?: Student;
@@ -19,6 +19,8 @@ export const EditStudentContent = ({
   setIsEditionMode,
   setIsModalOpen,
 }: Props) => {
+  const { createStudentAndFetch, updateStudentAndFetch } = useStudents();
+
   const {
     setValue,
     getValues,
@@ -83,13 +85,13 @@ export const EditStudentContent = ({
     }
 
     if (student) {
-      await updateStudent(student.id, data);
+      await updateStudentAndFetch(student.id, data);
       setIsModalOpen(false);
 
       return;
     }
 
-    await createStudent(data);
+    await createStudentAndFetch(data);
     setIsModalOpen(false);
   };
 

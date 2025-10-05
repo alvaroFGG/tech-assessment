@@ -6,7 +6,7 @@ import { Switch } from '../switch';
 import { Student } from '../../models';
 import { useState } from 'react';
 import { DeactivateStudentModal } from './deactivate-student-modal';
-import { updateStudent } from '../../services';
+import { useStudents } from '../../providers/students-provider';
 
 interface Props {
   student: Student;
@@ -19,13 +19,16 @@ export const ProfileInfoContent = ({
   setIsEditionMode,
   setIsModalOpen,
 }: Props) => {
+  const { updateStudentAndFetch } = useStudents();
+
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [isActive, setIsActive] = useState(student.isActive || false);
 
   const deactivateStudent = async () => {
     setIsActive(false);
-    await updateStudent(student.id, { ...student, isActive: false });
+    await updateStudentAndFetch(student.id, { ...student, isActive: false });
     setIsDeactivateModalOpen(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -104,12 +107,15 @@ export const ProfileInfoContent = ({
               onChange={async (checked) => {
                 if (!checked) {
                   setIsDeactivateModalOpen(true);
+                  return;
                 }
 
-                await updateStudent(student.id, {
+                await updateStudentAndFetch(student.id, {
                   ...student,
                   isActive: checked,
                 });
+                setIsActive(checked);
+                setIsModalOpen(false);
               }}
               defaultChecked={isActive}
             />

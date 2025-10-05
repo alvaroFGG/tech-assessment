@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { DesktopMenu } from './components/core';
 import StudentsPage from './pages/students';
+import StudentsProvider from './providers/students-provider';
 
 const StyledApp = styled.main`
   display: flex;
@@ -13,7 +14,9 @@ export function App() {
     <StyledApp>
       <DesktopMenu />
 
-      <StudentsPage />
+      <StudentsProvider>
+        <StudentsPage />
+      </StudentsProvider>
     </StyledApp>
   );
 }

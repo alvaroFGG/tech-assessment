@@ -4,31 +4,32 @@ import { CustomButton } from '../../components/core/custom-button';
 import { DynamicTable } from '../../components/table';
 import { Badge } from '../../components/badge';
 import i18n from '@tech-assessment/i18n';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProfileModal } from '../../components/modals/profile-modal';
 import { Student } from '../../models';
-import { findStudents, GenericApiResponse } from '../../services';
 import { Pagination } from '../../components/pagination/pagination';
+import { useStudents } from '../../providers/students-provider';
 
 const StudentsPage = () => {
+  const {
+    data,
+    count,
+    page,
+    pageSize,
+    totalPages,
+    setPage,
+    setPageSize,
+    loading,
+  } = useStudents();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | undefined>(
     undefined
   );
-  const [data, setData] = useState<GenericApiResponse<Student> | null>(null);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await findStudents(page, pageSize);
-      setData(response);
-    };
-
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, pageSize]);
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Wrapper>
       <PageHeader title={i18n.t('students')}>
@@ -50,10 +51,10 @@ const StudentsPage = () => {
         student={selectedStudent}
       />
 
-      {data && data.data.length > 0 && (
+      {data && data.length > 0 && (
         <DynamicTable
           data={
-            data.data.map((student: Student) => ({
+            data.map((student: Student) => ({
               ...student,
               ' ': (
                 <Badge
@@ -82,12 +83,12 @@ const StudentsPage = () => {
 
       {data && (
         <Pagination
-          count={data.count}
-          page={data.page}
+          count={count}
+          page={page}
           onPageChange={(newPage) => setPage(newPage)}
-          pageSize={data?.pageSize || 10}
+          pageSize={pageSize}
           setPageSize={setPageSize}
-          totalPages={data.totalPages}
+          totalPages={totalPages}
         />
       )}
     </Wrapper>

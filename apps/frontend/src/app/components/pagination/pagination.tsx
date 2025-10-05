@@ -59,7 +59,10 @@ export const Pagination = ({
         </PaginationItem>
       </div>
 
-      <PageSizeSelector onChange={(e) => setPageSize(Number(e.target.value))} />
+      <PageSizeSelector
+        onChange={(e) => setPageSize(Number(e.target.value))}
+        pageSize={pageSize}
+      />
     </Wrapper>
   );
 };

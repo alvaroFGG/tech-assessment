@@ -8,11 +8,7 @@ interface Props {
 
 export const Switch = ({ onChange, defaultChecked }: Props) => {
   return (
-    <SwitchRoot
-      defaultChecked={defaultChecked}
-      id="s1"
-      onCheckedChange={onChange}
-    >
+    <SwitchRoot checked={defaultChecked} id="s1" onCheckedChange={onChange}>
       <SwitchThumb />
     </SwitchRoot>
   );

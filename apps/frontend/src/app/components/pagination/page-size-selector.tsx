@@ -3,11 +3,12 @@ import i18n from '@tech-assessment/i18n';
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  pageSize: number;
 }
 
-export const PageSizeSelector = ({ onChange }: Props) => {
+export const PageSizeSelector = ({ onChange, pageSize }: Props) => {
   return (
-    <Wrapper onChange={onChange} defaultValue={10}>
+    <Wrapper onChange={onChange} defaultValue={pageSize}>
       <option value={10}>10 / {i18n.t('page')}</option>
       <option value={25}>25 / {i18n.t('page')}</option>
       <option value={50}>50 / {i18n.t('page')}</option>
