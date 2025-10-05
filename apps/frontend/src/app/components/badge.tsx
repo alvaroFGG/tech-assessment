@@ -6,7 +6,11 @@ interface Props {
 }
 
 export const Badge = ({ label, color }: Props) => {
-  return <Wrapper color={color}>{label}</Wrapper>;
+  return (
+    <Wrapper id="badge" color={color}>
+      {label}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div<{ color: string }>`
