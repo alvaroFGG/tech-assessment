@@ -43,6 +43,14 @@ export default function StudentsProvider({ children }: Props) {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  const handleSetPageSize = (newPageSize: number) => {
+    setPageSize(newPageSize);
+    const newTotalPages = Math.ceil(count / newPageSize);
+    setPage((prevPage) =>
+      prevPage > newTotalPages ? newTotalPages : prevPage
+    );
+  };
+
   const fetchStudents = async () => {
     setLoading(true);
     try {
@@ -84,7 +92,7 @@ export default function StudentsProvider({ children }: Props) {
         pageSize,
         totalPages,
         setPage,
-        setPageSize,
+        setPageSize: handleSetPageSize,
         loading,
         createStudentAndFetch,
         updateStudentAndFetch,
