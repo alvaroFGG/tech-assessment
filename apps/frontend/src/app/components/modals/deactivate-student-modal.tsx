@@ -16,7 +16,12 @@ export const DeactivateStudentModal = ({
   deactivateStudent,
 }: Props) => {
   return (
-    <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+    >
       <Dialog.Portal>
         <Overlay />
 
@@ -30,15 +35,11 @@ export const DeactivateStudentModal = ({
           </span>
 
           <div className="buttons">
-            <CustomButton
-              onClick={() => {}}
-              backgroundColor="transparent"
-              textColor="#262D34"
-            >
+            <CustomButton onClick={onClose} variant="outline">
               {i18n.t('cancel')}
             </CustomButton>
 
-            <CustomButton onClick={deactivateStudent} backgroundColor="#E36057">
+            <CustomButton onClick={deactivateStudent} variant="danger">
               {i18n.t('deactivate')}
             </CustomButton>
           </div>

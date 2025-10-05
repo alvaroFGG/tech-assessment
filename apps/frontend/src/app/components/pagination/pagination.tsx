@@ -67,7 +67,7 @@ export const Pagination = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav.attrs({ 'aria-label': 'Pagination' })`
   display: flex;
   justify-content: center;
   align-items: center;

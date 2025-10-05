@@ -27,6 +27,25 @@ const StudentsPage = () => {
     undefined
   );
 
+  const renderStatus = (active: boolean) => (
+    <Badge
+      color={active ? '#90E8BE' : '#CAD6DC'}
+      label={active ? 'Activo' : 'Inactivo'}
+    />
+  );
+
+  const renderName = (student: Student) => (
+    <span
+      className="name_link"
+      onClick={() => {
+        setSelectedStudent(student);
+        setIsModalOpen(true);
+      }}
+    >
+      {student.name} {student.lastName}
+    </span>
+  );
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -38,7 +57,7 @@ const StudentsPage = () => {
             setSelectedStudent(undefined);
             setIsModalOpen(true);
           }}
-          backgroundColor="#0ABB87"
+          variant="primary"
         >
           <img src="/icons/plus-icon.svg" alt="plus icon" />
           {i18n.t('add_student')}
@@ -56,23 +75,8 @@ const StudentsPage = () => {
           data={
             data.map((student: Student) => ({
               ...student,
-              ' ': (
-                <Badge
-                  color={student.isActive === true ? '#90E8BE' : '#CAD6DC'}
-                  label={student.isActive === true ? 'Activo' : 'Inactivo'}
-                />
-              ),
-              name: (
-                <span
-                  className="name_link"
-                  onClick={() => {
-                    setSelectedStudent(student);
-                    setIsModalOpen(true);
-                  }}
-                >
-                  {student.name} {student.lastName}
-                </span>
-              ),
+              ' ': renderStatus(student.isActive),
+              name: renderName(student),
               user: <span>{student.email.split('@')[0]}</span>,
             })) as unknown as Record<string, string>[]
           }
@@ -106,7 +110,9 @@ const Wrapper = styled.div`
 
   .name_link {
     cursor: pointer;
-    :hover {
+    transition: color 0.2s ease;
+    &:hover {
+      color: #0abb87;
       text-decoration: underline;
     }
   }

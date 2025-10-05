@@ -110,14 +110,13 @@ export const EditStudentContent = ({
               onClick={() => {
                 setIsEditionMode(false);
               }}
-              backgroundColor="transparent"
-              textColor="#262D34"
+              variant="outline"
             >
               {i18n.t('cancel_edition')}
             </CustomButton>
           )}
 
-          <CustomButton onClick={handleSubmit} backgroundColor="#0ABB87">
+          <CustomButton onClick={handleSubmit} variant="primary">
             {i18n.t('save')}
           </CustomButton>
         </div>
@@ -129,11 +128,13 @@ export const EditStudentContent = ({
           defaultValue={student?.name}
           onChange={(e) => setValue('name', e.target.value)}
           error={errors.name?.message || null}
+          id="name"
         />
 
         <CustomInput
           label={i18n.t('lastname')}
           defaultValue={student?.lastName}
+          id="lastName"
           onChange={(e) => setValue('lastName', e.target.value)}
           error={errors.lastName?.message || null}
         />
@@ -143,6 +144,7 @@ export const EditStudentContent = ({
           defaultValue={student?.email}
           onChange={(e) => setValue('email', e.target.value)}
           error={errors.email?.message || null}
+          id="email"
         />
 
         <CustomInput
@@ -150,6 +152,7 @@ export const EditStudentContent = ({
           defaultValue={student?.phone}
           onChange={(e) => setValue('phone', e.target.value)}
           error={errors.phone?.message || null}
+          id="phone"
         />
       </div>
 
@@ -160,8 +163,7 @@ export const EditStudentContent = ({
           onClick={() => {
             setIsModalOpen(false);
           }}
-          backgroundColor="transparent"
-          textColor="#262D34"
+          variant="outline"
         >
           {i18n.t('close')}
         </CustomButton>

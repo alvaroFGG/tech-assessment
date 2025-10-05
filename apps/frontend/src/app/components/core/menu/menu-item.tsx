@@ -17,7 +17,7 @@ export const MenuItem = ({ icon, label }: Props) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   gap: 12px;

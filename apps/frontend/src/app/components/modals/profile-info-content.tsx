@@ -22,10 +22,8 @@ export const ProfileInfoContent = ({
   const { updateStudentAndFetch } = useStudents();
 
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
-  const [isActive, setIsActive] = useState(student.isActive || false);
 
   const deactivateStudent = async () => {
-    setIsActive(false);
     await updateStudentAndFetch(student.id, { ...student, isActive: false });
     setIsDeactivateModalOpen(false);
     setIsModalOpen(false);
@@ -49,7 +47,7 @@ export const ProfileInfoContent = ({
             onClick={() => {
               setIsEditionMode(true);
             }}
-            backgroundColor="#0ABB87"
+            variant="primary"
           >
             {i18n.t('edit_student')}
           </CustomButton>
@@ -114,10 +112,9 @@ export const ProfileInfoContent = ({
                   ...student,
                   isActive: checked,
                 });
-                setIsActive(checked);
                 setIsModalOpen(false);
               }}
-              defaultChecked={isActive}
+              defaultChecked={student.isActive}
             />
 
             {student.isActive && <span>{i18n.t('active_account')}</span>}
@@ -128,8 +125,7 @@ export const ProfileInfoContent = ({
             onClick={() => {
               setIsModalOpen(false);
             }}
-            backgroundColor="transparent"
-            textColor="#262D34"
+            variant="outline"
           >
             {i18n.t('close')}
           </CustomButton>

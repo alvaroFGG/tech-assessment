@@ -3,8 +3,8 @@ import { MenuItem } from './menu-item';
 
 export const DesktopMenu = () => {
   return (
-    <StyledDesktopMenu>
-      <div className="title">
+    <StyledDesktopMenu role="navigation" aria-label="Main Menu">
+      <header className="title">
         <div>
           <img src="/Logo.svg" alt="Logo" />
         </div>
@@ -16,7 +16,7 @@ export const DesktopMenu = () => {
         <div>
           <img src="/icons/question-rounded-icon.svg" alt="question icon" />
         </div>
-      </div>
+      </header>
 
       <MenuItem icon="/icons/hat-icon.svg" label="Alumnos" />
     </StyledDesktopMenu>
@@ -40,17 +40,5 @@ const StyledDesktopMenu = styled.div`
     gap: 16px;
     height: fit-content;
     align-items: center;
-  }
-
-  .students {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-left: 8px;
-
-    .hat_icon {
-      width: 20px;
-      height: 20px;
-    }
   }
 `;

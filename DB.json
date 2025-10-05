@@ -77,7 +77,7 @@
     "lastName": "Pendre",
     "email": "apendre9@tripadvisor.com",
     "phone": "(318) 2189689",
-    "isActive": false
+    "isActive": true
   },
   {
     "id": "65a7f3aefc13ae4b2ffa2703",

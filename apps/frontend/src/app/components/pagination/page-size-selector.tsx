@@ -8,7 +8,7 @@ interface Props {
 
 export const PageSizeSelector = ({ onChange, pageSize }: Props) => {
   return (
-    <Wrapper onChange={onChange} defaultValue={pageSize}>
+    <Wrapper onChange={onChange} value={pageSize}>
       <option value={10}>10 / {i18n.t('page')}</option>
       <option value={25}>25 / {i18n.t('page')}</option>
       <option value={50}>50 / {i18n.t('page')}</option>
@@ -22,4 +22,5 @@ const Wrapper = styled.select`
   border: 1.5px solid #aab7be;
   height: 32px;
   padding: 0 8px;
+  cursor: pointer;
 `;
