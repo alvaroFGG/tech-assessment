@@ -233,4 +233,11 @@ const Content = styled(Dialog.Content)`
     justify-content: end;
     align-items: center;
   }
+
+  @media (max-width: 600px) {
+    min-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 16px 8px;
+  }
 `;

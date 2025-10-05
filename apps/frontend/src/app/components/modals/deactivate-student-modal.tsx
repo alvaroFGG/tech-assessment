@@ -76,4 +76,10 @@ const Content = styled(Dialog.Content)`
     gap: 8px;
     justify-content: center;
   }
+
+  @media (max-width: 600px) {
+    min-width: 100%;
+    border-radius: 0;
+    padding: 16px 8px;
+  }
 `;

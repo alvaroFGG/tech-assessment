@@ -223,4 +223,11 @@ const Content = styled(Dialog.Content)`
       font-size: 14px;
     }
   }
+
+  @media (max-width: 600px) {
+    min-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 16px 8px;
+  }
 `;

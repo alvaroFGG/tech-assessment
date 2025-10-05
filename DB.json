@@ -38841,7 +38841,7 @@
   },
   {
     "id": "1759670079755",
-    "isActive": true,
+    "isActive": false,
     "name": "Test Edited",
     "lastName": "Test Edited",
     "email": "test.edited@test.com",
