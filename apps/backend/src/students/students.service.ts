@@ -4,6 +4,7 @@ import * as path from 'path';
 import { normalizeId } from '../utils';
 import { Student } from './entities/student.entity';
 import { CreateStudentDto } from './dto/create-student.dto';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class StudentsService {
@@ -39,7 +40,7 @@ export class StudentsService {
     const data = this.readData();
 
     const newStudent: Student = {
-      id: Date.now().toString(),
+      id: uuidv4(),
       ...dto,
     };
 
