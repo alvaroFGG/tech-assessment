@@ -1,3 +1,4 @@
+
 # Prueba técnica
 
 Aquí se explicarán los procedimientos, librerías y decisiones tomadas durante esta prueba técnica.
@@ -29,3 +30,16 @@ Aquí se explicarán los procedimientos, librerías y decisiones tomadas durante
   - _Controller_: Este archivo recibe las llamadas con la ruta y el método HTTP correspondiente y devuelve la respuesta del Service
   - _Service_: Este archivo realiza las operaciones correspondientes con el archivo utliazado para la base de datos (DB.json).
     - **Función normalizeId**: Al ser el json un export de un mongo, he querido hacer una función para que sea más facil trabajar con cada registro, haciendo que el id sea un string en vez de un objeto.
+
+
+## Arranque
+Para arrancar las aplicaciones es necesario tener un .env con las siquientes variables:
+
+    FRONTEND_URL=http://localhost:4200
+    VITE_PUBLIC_API_URL=http://localhost:3000/api
+
+Despues: 
+
+    npm i
+    npm run start:frontend
+    npm run start:backend
